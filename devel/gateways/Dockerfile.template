@@ -54,8 +54,8 @@ USER syndicate
 WORKDIR $HOME
 
 ###### syndicate-core
-RUN wget -O syndicte-core.zip https://github.com/syndicate-storage/syndicate-core/archive/master.zip
-RUN unzip syndicte-core.zip
+RUN wget -O syndicate-core.zip https://github.com/syndicate-storage/syndicate-core/archive/master.zip
+RUN unzip syndicate-core.zip
 RUN mv syndicate-core-master syndicate-core
 WORKDIR "syndicate-core"
 
@@ -77,6 +77,18 @@ RUN make
 
 USER root
 RUN make install
+
+USER syndicate
+WORKDIR $HOME
+
+###### syndicate-filesystem-ag-driver
+RUN wget -O syndicate-fs-driver.zip https://github.com/syndicate-storage/syndicate-fs-driver/archive/master.zip
+RUN unzip syndicate-fs-driver.zip
+RUN mv syndicate-fs-driver-master syndicate-fs-driver
+WORKDIR "syndicate-fs-driver"
+
+USER root
+RUN python setup.py install
 
 USER syndicate
 WORKDIR $HOME

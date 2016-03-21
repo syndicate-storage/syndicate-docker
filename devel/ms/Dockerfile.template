@@ -53,8 +53,8 @@ USER syndicate
 WORKDIR $HOME
 
 ###### syndicate-core
-RUN wget -O syndicte-core.zip https://github.com/syndicate-storage/syndicate-core/archive/master.zip
-RUN unzip syndicte-core.zip
+RUN wget -O syndicate-core.zip https://github.com/syndicate-storage/syndicate-core/archive/master.zip
+RUN unzip syndicate-core.zip
 RUN mv syndicate-core-master syndicate-core
 WORKDIR "syndicate-core"
 
