@@ -11,7 +11,7 @@ MAINTAINER	Illyoung Choi <iychoi@email.arizona.edu>
 RUN apt-get update
 RUN apt-get install -y wget unzip
 RUN apt-get install -y python-pip
-RUN ldconfig
+ENV LD_LIBRARY_PATH /usr/local/lib
 
 ##############################################
 # Setup a Syndicate account
