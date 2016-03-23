@@ -87,5 +87,5 @@ WORKDIR $HOME
 
 RUN mkdir /home/syndicate/datastore
 
-CMD ["/home/syndicate/google_appengine/dev_appserver.py", "--admin_host=0.0.0.0", "--host=0.0.0.0", "--storage_path=/home/syndicate/datastore", "/home/syndicate/syndicate-core/build/out/ms"]
+CMD ["/home/syndicate/google_appengine/dev_appserver.py", "--admin_host=0.0.0.0", "--host=0.0.0.0", "--storage_path=/home/syndicate/datastore", "--skip_sdk_update_check", "/home/syndicate/syndicate-core/build/out/ms"]
 
