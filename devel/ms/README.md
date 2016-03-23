@@ -7,7 +7,7 @@ Make sure that you install docker and have access rights to run docker before ge
 
 Run build.sh to start building a docker image.
 ```
-sudo build.sh "admin@email.addr"
+sudo make build MS_APP_ADMIN_EMAIL=`email-address` MS_HOST=`ip_address`
 ```
 
 A new docker image for Syndicate MS will have a name "syndicate-ms" by default. The docker image created will have Syndicate installed and an user "syndicate".
@@ -19,5 +19,5 @@ sudo docker run -t -i -p 8080:8080 -p 8000:8000 syndicate-ms
 
 Also, you can open a terminal to the running image (container).
 ```
-sudo docker exec -i -t <container_id> bash
+sudo docker exec -i -t `container_id` bash
 ```
