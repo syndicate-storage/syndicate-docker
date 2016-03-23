@@ -42,3 +42,4 @@ RUN make
 USER root
 RUN make install
 
+WORKDIR $HOME

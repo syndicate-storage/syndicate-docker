@@ -5,16 +5,10 @@ Build a Docker Image
 
 Make sure that you install docker and have access rights to run docker before get started.
 
-Run build.sh to start building a docker image.
+Run `make` to start building a docker image.
 ```
-sudo build.sh
+sudo make build MS_APP_ADMIN_EMAIL=`email-address` MS_HOST=`ip_address` GATEWAY_PORT=`portnum`
 ```
-
-You can also specify a port number you want to use for the gateway and a name of docker image.
-```
-sudo build.sh 31112 syndicate-gateways-31112
-```
-
 
 A new docker image for Syndicate Gateway will have a name "syndicate-gateways" by default. The docker image created will have Syndicate installed and an user "syndicate".
 

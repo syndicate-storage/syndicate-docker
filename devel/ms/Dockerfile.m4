@@ -26,9 +26,6 @@ expose 8000
 ##############################################
 # Run Syndicate MS
 ##############################################
-USER syndicate
-WORKDIR $HOME
-
 RUN mkdir /home/syndicate/datastore
 
 CMD ["/home/syndicate/google_appengine/dev_appserver.py", "--admin_host=0.0.0.0", "--host=0.0.0.0", "--storage_path=/home/syndicate/datastore", "--skip_sdk_update_check=true", "/home/syndicate/syndicate-core/build/out/ms"]
