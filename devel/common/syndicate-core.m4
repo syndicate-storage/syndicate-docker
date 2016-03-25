@@ -19,6 +19,7 @@ RUN make install
 # syndicate
 ##############################################
 RUN apt-get install -y protobuf-compiler libprotobuf-dev libcurl4-gnutls-dev libmicrohttpd-dev libjson0-dev valgrind cython python-protobuf libssl-dev python-crypto python-requests
+RUN pip install grequests gevent greenlet
 
 USER syndicate
 WORKDIR $HOME
