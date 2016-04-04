@@ -1,7 +1,20 @@
 ##############################################
 # syndicate
 ##############################################
-RUN pip install pika python-irodsclient retrying timeout_decorator pyinotify
+RUN pip install pika retrying timeout_decorator pyinotify
+
+USER syndicate
+WORKDIR $HOME
+
+# install python-irodsclient from github
+RUN wget -O python-irodsclient.zip https://github.com/iychoi/python-irodsclient/archive/master.zip
+RUN unzip python-irodsclient.zip
+RUN mv python-irodsclient-master python-irodsclient
+WORKDIR "python-irodsclient"
+
+USER root
+RUN python setup.py install
+
 
 USER syndicate
 WORKDIR $HOME
