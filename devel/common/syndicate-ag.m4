@@ -29,6 +29,7 @@ RUN make
 
 USER root
 RUN make install
+RUN ldconfig
 
 USER syndicate
 WORKDIR $HOME

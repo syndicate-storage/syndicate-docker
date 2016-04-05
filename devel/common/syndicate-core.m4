@@ -14,6 +14,7 @@ RUN make
 
 USER root
 RUN make install
+RUN ldconfig
 
 ##############################################
 # syndicate
@@ -42,5 +43,6 @@ RUN make
 
 USER root
 RUN make install
+RUN ldconfig
 
 WORKDIR $HOME
