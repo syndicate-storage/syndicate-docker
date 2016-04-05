@@ -7,7 +7,7 @@ USER syndicate
 WORKDIR $HOME
 
 # install python-irodsclient from github
-RUN wget -O python-irodsclient.zip https://github.com/iychoi/python-irodsclient/archive/master.zip
+RUN wget -O python-irodsclient.zip https://github.com/irods/python-irodsclient/archive/master.zip
 RUN unzip python-irodsclient.zip
 RUN mv python-irodsclient-master python-irodsclient
 WORKDIR "python-irodsclient"
