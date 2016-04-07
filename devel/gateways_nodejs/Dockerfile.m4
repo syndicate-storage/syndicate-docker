@@ -26,9 +26,16 @@ WORKDIR $HOME
 
 RUN npm install ffi ref ref-struct ref-array
 
-RUN wget -O libsyndicate-node.js.zip https://github.com/syndicate-storage/libsyndicate-node.js/archive/master.zip
-RUN unzip libsyndicate-node.js.zip
-RUN mv libsyndicate-node.js-master libsyndicate-node.js
+RUN wget -O syndicate-node.zip https://github.com/syndicate-storage/syndicate-node/archive/master.zip
+RUN unzip syndicate-node.zip
+RUN mv syndicate-node-master syndicate-node
+
+# install syndicate-node from github
+RUN npm install git://github.com/syndicate-storage/syndicate-node.git
+
+RUN wget -O syndicate-node-ug-tools.zip https://github.com/syndicate-storage/syndicate-node-ug-tools/archive/master.zip
+RUN unzip syndicate-node-ug-tools.zip
+RUN mv syndicate-node-ug-tools-master syndicate-node-ug-tools
 
 ifdef(`DEF_GATEWAY_PORT',
 expose DEF_GATEWAY_PORT,
