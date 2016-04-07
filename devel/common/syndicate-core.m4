@@ -33,7 +33,11 @@ WORKDIR "syndicate-core"
 
 # replace localhost to MS_HOST
 ifdef(`DEF_MS_HOST',
-RUN sed -i 's/localhost/DEF_MS_HOST/g' ms/common/msconfig.py,
+ENV SERVER_NAME DEF_MS_HOST,
+)
+
+ifdef(`DEF_MS_PORT',
+ENV SERVER_PORT DEF_MS_PORT,
 )
 
 ifdef(`DEF_MS_APP_ADMIN_EMAIL',

@@ -20,7 +20,13 @@ WORKDIR $HOME
 RUN wget https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.33.zip
 RUN unzip google_appengine_1.9.33.zip
 
+# MS API
+ifdef(`DEF_MS_PORT',
+expose DEF_MS_PORT,
 expose 8080
+)
+
+# Google App Engine Admin
 expose 8000
 
 ##############################################

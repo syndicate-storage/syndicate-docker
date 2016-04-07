@@ -9,6 +9,10 @@ ifneq ($(MS_HOST), )
 M4FLAGS += -D DEF_MS_HOST=$(MS_HOST)
 endif
 
+ifneq ($(MS_PORT), )
+M4FLAGS += -D DEF_MS_PORT=$(MS_PORT)
+endif
+
 dockerfile: *.m4
 	m4 -I $(COMMON_CODE) $(M4FLAGS) Dockerfile.m4 > Dockerfile
 
