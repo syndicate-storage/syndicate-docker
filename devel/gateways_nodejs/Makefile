@@ -9,6 +9,10 @@ ifneq ($(MS_HOST), )
 M4FLAGS += -D DEF_MS_HOST=$(MS_HOST)
 endif
 
+ifneq ($(MS_PORT), )
+M4FLAGS += -D DEF_MS_PORT=$(MS_PORT)
+endif
+
 ifneq ($(GATEWAY_PORT), )
 M4FLAGS += -D DEF_GATEWAY_PORT=$(GATEWAY_PORT)
 endif
