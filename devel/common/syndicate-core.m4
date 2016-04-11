@@ -31,19 +31,17 @@ RUN unzip syndicate-core.zip
 RUN mv syndicate-core-master syndicate-core
 WORKDIR "syndicate-core"
 
-# replace localhost to MS_HOST
-ifdef(`DEF_MS_HOST',
-ENV MS_SERVER_NAME DEF_MS_HOST,
-)
-
-ifdef(`DEF_MS_PORT',
-ENV MS_SERVER_PORT DEF_MS_PORT,
-)
-
 ifdef(`DEF_MS_APP_ADMIN_EMAIL',
-RUN make MS_APP_ADMIN_EMAIL=DEF_MS_APP_ADMIN_EMAIL,
-RUN make
+define(MS_MAKE_ARGS_ADMIN_EMAIL, MS_APP_ADMIN_EMAIL=`DEF_MS_APP_ADMIN_EMAIL'),
+define(MS_MAKE_ARGS_ADMIN_EMAIL, `')
 )
+
+ifdef(`DEF_MS_HOST',
+define(MS_MAKE_ARGS_HOST, MS_APP_PUBLIC_HOST=`DEF_MS_HOST'),
+define(MS_MAKE_ARGS_HOST, `')
+)
+
+RUN make MS_MAKE_ARGS_ADMIN_EMAIL MS_MAKE_ARGS_HOST
 
 USER root
 RUN make install
