@@ -31,15 +31,7 @@ RUN unzip syndicate-node.zip
 RUN mv syndicate-node-master syndicate-node
 
 # install syndicate-node
-USER root
-WORKDIR $HOME
-RUN npm install ./syndicate-node -g syndicate-drive
-
-USER syndicate
-WORKDIR $HOME
-
-# make the module available
-RUN npm link syndicate-drive
+RUN install ./syndicate-node
 
 RUN wget -O syndicate-node-ug-tools.zip https://github.com/syndicate-storage/syndicate-node-ug-tools/archive/master.zip
 RUN unzip syndicate-node-ug-tools.zip
