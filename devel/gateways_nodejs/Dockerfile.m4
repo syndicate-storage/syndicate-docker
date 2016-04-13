@@ -32,7 +32,7 @@ RUN unzip syndicate-node.zip
 RUN mv syndicate-node-master syndicate-node
 
 # install syndicate-node
-RUN install ./syndicate-node
+RUN npm install ./syndicate-node
 
 # syndicate-node-ug-tools
 RUN wget -O syndicate-node-ug-tools.zip https://github.com/syndicate-storage/syndicate-node-ug-tools/archive/master.zip
