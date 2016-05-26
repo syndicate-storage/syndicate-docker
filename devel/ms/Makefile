@@ -1,5 +1,5 @@
 COMMON_CODE = ../common
-M4FLAGS = 
+M4FLAGS =
 
 ifneq ($(MS_APP_ADMIN_EMAIL), )
 M4FLAGS += -D DEF_MS_APP_ADMIN_EMAIL=$(MS_APP_ADMIN_EMAIL)
@@ -20,4 +20,4 @@ build: dockerfile
 	docker build --rm -t syndicate-ms .
 
 clean:
-    docker rmi syndicate-ms
+	docker rmi syndicate-ms
