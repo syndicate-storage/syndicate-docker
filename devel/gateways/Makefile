@@ -17,6 +17,8 @@ ifneq ($(GATEWAY_PORT), )
 M4FLAGS += -D DEF_GATEWAY_PORT=$(GATEWAY_PORT)
 endif
 
+.PHONY: dockerfile build clean
+
 dockerfile: *.m4
 	m4 -I $(COMMON_CODE) $(M4FLAGS) Dockerfile.m4 > Dockerfile
 

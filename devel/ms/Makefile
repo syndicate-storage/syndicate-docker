@@ -13,6 +13,8 @@ ifneq ($(MS_PORT), )
 M4FLAGS += -D DEF_MS_PORT=$(MS_PORT)
 endif
 
+.PHONY: dockerfile build clean
+
 dockerfile: *.m4
 	m4 -I $(COMMON_CODE) $(M4FLAGS) Dockerfile.m4 > Dockerfile
 
