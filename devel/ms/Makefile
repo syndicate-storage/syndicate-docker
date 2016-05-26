@@ -18,3 +18,6 @@ dockerfile: *.m4
 
 build: dockerfile
 	docker build --rm -t syndicate-ms .
+
+clean:
+    docker rmi syndicate-ms

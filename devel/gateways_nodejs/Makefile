@@ -26,3 +26,6 @@ dockerfile: *.m4
 
 build: dockerfile
 	docker build --rm -t syndicate-gateways-node .
+
+clean:
+    docker rmi syndicate-gateways-node
