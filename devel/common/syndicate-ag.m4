@@ -1,7 +1,8 @@
 ##############################################
 # syndicate
 ##############################################
-RUN pip install pika retrying timeout_decorator pyinotify
+RUN pip install pika pyinotify expiringdict
+#retrying timeout_decorator 
 
 USER syndicate
 WORKDIR $HOME
