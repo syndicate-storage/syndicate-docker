@@ -4,7 +4,7 @@ GATEWAY_PORT ?= 31111
 UG_HTTP_PORT ?= 8888
 
 all: ms gateways gateways_nodejs
-.PHONY: all
+.PHONY: all ms ms_clean gateways gateways_clean gateways_nodejs gateways_nodejs_clean clean
 
 ms:
 	$(MAKE) -C ms build MS_APP_ADMIN_EMAIL=$(ADMIN_EMAIL) MS_HOST=$(HOST_NAME)
