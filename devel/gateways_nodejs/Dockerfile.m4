@@ -24,7 +24,7 @@ RUN apt-get install -y nodejs
 USER syndicate
 WORKDIR $HOME
 
-RUN npm install ffi ref ref-struct ref-array async express node-cache express-ipfilter
+RUN npm install ffi ref ref-struct ref-array async express node-cache express-ipfilter range_check
 
 # syndicate-node
 RUN wget -O syndicate-node.zip https://github.com/syndicate-storage/syndicate-node/archive/master.zip
