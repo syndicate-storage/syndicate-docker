@@ -24,7 +24,7 @@ RUN apt-get install -y nodejs
 USER syndicate
 WORKDIR $HOME
 
-RUN npm install ffi ref ref-struct ref-array async express node-cache
+RUN npm install ffi ref ref-struct ref-array async express node-cache express-ipfilter
 
 # syndicate-node
 RUN wget -O syndicate-node.zip https://github.com/syndicate-storage/syndicate-node/archive/master.zip
@@ -53,4 +53,3 @@ ifdef(`DEF_UG_HTTP_PORT',
 expose DEF_UG_HTTP_PORT,
 expose 8888
 )
-
