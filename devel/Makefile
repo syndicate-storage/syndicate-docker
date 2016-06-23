@@ -3,8 +3,8 @@ HOST_NAME ?= "vm64-232.iplantcollaborative.org"
 GATEWAY_PORT ?= 31111
 UG_HTTP_PORT ?= 8888
 
-all: ms gateways gateways_nodejs
-.PHONY: all ms ms_clean gateways gateways_clean gateways_nodejs gateways_nodejs_clean clean
+all: ms gateways gateways_nodejs hadoop
+.PHONY: all ms ms_clean gateways gateways_clean gateways_nodejs gateways_nodejs_clean hadoop hadoop_clean clean
 
 ms:
 	$(MAKE) -C ms build MS_APP_ADMIN_EMAIL=$(ADMIN_EMAIL) MS_HOST=$(HOST_NAME)
@@ -24,4 +24,10 @@ gateways_nodejs:
 gateways_nodejs_clean:
 	$(MAKE) -C gateways_nodejs clean
 
-clean: ms_clean gateways_clean gateways_nodejs_clean
+hadoop:
+	$(MAKE) -C hadoop build UG_HTTP_PORT=$(UG_HTTP_PORT)
+
+hadoop_clean:
+	$(MAKE) -C hadoop clean
+
+clean: ms_clean gateways_clean gateways_nodejs_clean hadoop_clean
