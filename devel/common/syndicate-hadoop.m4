@@ -24,7 +24,10 @@ RUN ant
 # libs = libs/
 
 # Configure
-ADD conf /home/syndicate/hadoop/conf
+ADD hadoop_conf/*.sh /home/syndicate/hadoop/conf
+ADD hadoop_conf/*.xml /home/syndicate/hadoop/conf
+ADD hadoop_conf/masters /home/syndicate/hadoop/conf
+ADD hadoop_conf/slaves /home/syndicate/hadoop/conf
 
 USER root
 WORKDIR $HOME
