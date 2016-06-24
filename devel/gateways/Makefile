@@ -17,13 +17,14 @@ ifneq ($(GATEWAY_PORT), )
 M4FLAGS += -D DEF_GATEWAY_PORT=$(GATEWAY_PORT)
 endif
 
-.PHONY: dockerfile build clean
+.PHONY: Dockerfile build clean
 
-dockerfile: *.m4
-	m4 -I $(COMMON_CODE) $(M4FLAGS) Dockerfile.m4 > Dockerfile
+Dockerfile: Dockerfile.m4
+	m4 -I $(COMMON_CODE) $(M4FLAGS) $^ > $@
 
-build: dockerfile
+build: Dockerfile
 	docker build --rm -t syndicate-gateways .
 
 clean:
-	docker rmi syndicate-gateways
+	-docker rmi -f syndicate-gateways
+	rm -f Dockerfile

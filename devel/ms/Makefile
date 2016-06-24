@@ -13,13 +13,14 @@ ifneq ($(MS_PORT), )
 M4FLAGS += -D DEF_MS_PORT=$(MS_PORT)
 endif
 
-.PHONY: dockerfile build clean
+.PHONY: Dockerfile build clean
 
-dockerfile: *.m4
-	m4 -I $(COMMON_CODE) $(M4FLAGS) Dockerfile.m4 > Dockerfile
+Dockerfile: Dockerfile.m4
+	m4 -I $(COMMON_CODE) $(M4FLAGS) $^ > $@
 
-build: dockerfile
+build: Dockerfile
 	docker build --rm -t syndicate-ms .
 
 clean:
-	docker rmi syndicate-ms
+	-docker rmi -f syndicate-ms
+	rm -f Dockerfile
