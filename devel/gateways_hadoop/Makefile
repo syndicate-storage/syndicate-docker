@@ -43,7 +43,7 @@ Dockerfile: Dockerfile.m4
 config:
 	$(MAKE) -C hadoop_conf
 
-build: Dockerfile
+build: config Dockerfile
 	docker build --rm -t syndicate-gateways-hadoop .
 
 clean:

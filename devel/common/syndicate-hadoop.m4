@@ -33,6 +33,7 @@ RUN wget -O /home/syndicate/hadoop/lib/jackson-xc-1.5.2.jar http://central.maven
 ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
 ENV HADOOP_HOME /home/syndicate/hadoop
 
+
 USER root
 WORKDIR $HOME
 
