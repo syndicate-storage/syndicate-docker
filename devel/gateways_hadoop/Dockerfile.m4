@@ -20,6 +20,13 @@ include(`syndicate-hadoop.m4')
 USER syndicate
 WORKDIR $HOME
 
+RUN mkdir .ssh
+RUN chmod 700 .ssh
+
+ADD keys.pub $HOME/.ssh/
+RUN cat .ssh/keys.pub >> .ssh/authorized_keys
+RUN chmod 600 .ssh/authorized_keys
+
 ifdef(`DEF_GATEWAY_PORT',
 expose DEF_GATEWAY_PORT,
 expose 31111

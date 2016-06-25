@@ -6,7 +6,9 @@
 <configuration>
 	<property>
 		<name>fs.default.name</name>
-		<value>hdfs://DEF_MASTER_HOSTNAME:8020</value>
+		<value>hdfs://ifdef(`DEF_MASTER_HOSTNAME',
+DEF_MASTER_HOSTNAME,
+localhost):8020</value>
 	</property>
 	<property>
 		<name>hadoop.tmp.dir</name>
@@ -20,10 +22,14 @@
 	</property>
 	<property>
 		<name>fs.hsyndicate.hosts</name>
-		<value>DEF_UG_HTTP_HOSTS</value>
+		<value>ifdef(`DEF_UG_HTTP_HOSTS',
+DEF_UG_HTTP_HOSTS,
+localhost)</value>
 	</property>
 	<property>
 		<name>fs.hsyndicate.port</name>
-		<value>DEF_UG_HTTP_PORT</value>
+		<value>ifdef(`DEF_UG_HTTP_PORT',
+DEF_UG_HTTP_PORT,
+8888)</value>
 	</property>
 </configuration>

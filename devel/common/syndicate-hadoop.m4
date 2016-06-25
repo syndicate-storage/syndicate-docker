@@ -23,16 +23,15 @@ RUN ant
 
 WORKDIR $HOME
 
-RUN cp /home/syndicate/h-syndicate/dist/H-Syndicate.jar /home/syndicate/hadoop/lib
-
-RUN wget -O /home/syndicate/hadoop/lib/commons-collections4-4.0.jar http://central.maven.org/maven2/org/apache/commons/commons-collections4/4.0/commons-collections4-4.0.jar
-RUN wget -O /home/syndicate/hadoop/lib/jersey-client-1.8.jar http://central.maven.org/maven2/com/sun/jersey/jersey-client/1.8/jersey-client-1.8.jar
-RUN wget -O /home/syndicate/hadoop/lib/jackson-jaxrs-1.5.2.jar http://central.maven.org/maven2/org/codehaus/jackson/jackson-jaxrs/1.5.2/jackson-jaxrs-1.5.2.jar
-RUN wget -O /home/syndicate/hadoop/lib/jackson-xc-1.5.2.jar http://central.maven.org/maven2/org/codehaus/jackson/jackson-xc/1.5.2/jackson-xc-1.5.2.jar
-
 ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
-ENV HADOOP_HOME /home/syndicate/hadoop
+ENV HADOOP_HOME $HOME/hadoop
 
+RUN cp $HOME/h-syndicate/dist/H-Syndicate.jar $HADOOP_HOME/lib
+
+RUN wget -O $HADOOP_HOME/lib/commons-collections4-4.0.jar http://central.maven.org/maven2/org/apache/commons/commons-collections4/4.0/commons-collections4-4.0.jar
+RUN wget -O $HADOOP_HOME/lib/jersey-client-1.8.jar http://central.maven.org/maven2/com/sun/jersey/jersey-client/1.8/jersey-client-1.8.jar
+RUN wget -O $HADOOP_HOME/lib/jackson-jaxrs-1.5.2.jar http://central.maven.org/maven2/org/codehaus/jackson/jackson-jaxrs/1.5.2/jackson-jaxrs-1.5.2.jar
+RUN wget -O $HADOOP_HOME/lib/jackson-xc-1.5.2.jar http://central.maven.org/maven2/org/codehaus/jackson/jackson-xc/1.5.2/jackson-xc-1.5.2.jar
 
 USER root
 WORKDIR $HOME

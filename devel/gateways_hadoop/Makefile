@@ -35,7 +35,7 @@ endif
 
 export
 
-.PHONY: Dockerfile build clean
+.PHONY: Dockerfile keys build clean
 
 Dockerfile: Dockerfile.m4
 	m4 -I $(COMMON_CODE) $(M4FLAGS) $^ > $@
@@ -43,10 +43,14 @@ Dockerfile: Dockerfile.m4
 config:
 	$(MAKE) -C hadoop_conf
 
-build: config Dockerfile
+keys:
+	ssh-keygen -t rsa -P '' -f ./keys
+
+build: config keys Dockerfile
 	docker build --rm -t syndicate-gateways-hadoop .
 
 clean:
+	rm -f keys keys.pub
 	-docker rmi -f syndicate-gateways-hadoop
 	rm -f Dockerfile
 	$(MAKE) -C hadoop_conf clean

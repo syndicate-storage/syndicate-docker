@@ -6,7 +6,9 @@
 <configuration>
 	<property>
 		<name>mapred.job.tracker</name>
-		<value>DEF_MASTER_HOSTNAME:8021</value>
+		<value>ifdef(`DEF_MASTER_HOSTNAME',
+DEF_MASTER_HOSTNAME,
+localhost):8021</value>
 	</property>
 	<property>
 		<name>mapred.compress.map.output</name>
