@@ -20,9 +20,7 @@ include(`syndicate-hadoop.m4')
 USER syndicate
 WORKDIR $HOME
 
-ADD hadoop_conf $HOME/hadoop_conf
-
-ENV HADOOP_CONF_DIR $HOME/hadoop_conf
+ADD hadoop_conf $HOME/hadoop/conf
 
 ifdef(`DEF_GATEWAY_PORT',
 expose DEF_GATEWAY_PORT,
