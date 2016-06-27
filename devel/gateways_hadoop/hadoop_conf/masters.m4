@@ -1,4 +1,0 @@
-ifdef(`DEF_MASTER_HOSTNAME',
-DEF_MASTER_HOSTNAME,
-localhost
-)

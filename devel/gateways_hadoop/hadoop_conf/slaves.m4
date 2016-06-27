@@ -1,4 +1,0 @@
-ifdef(`DEF_SLAVE_HOSTNAMES',
-DEF_SLAVE_HOSTNAMES,
-localhost
-)

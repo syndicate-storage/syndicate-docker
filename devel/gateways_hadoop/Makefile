@@ -17,40 +17,19 @@ ifneq ($(GATEWAY_PORT), )
 M4FLAGS += -D DEF_GATEWAY_PORT=$(GATEWAY_PORT)
 endif
 
-ifneq ($(MASTER_HOSTNAME), )
-M4FLAGS += -D DEF_MASTER_HOSTNAME=$(MASTER_HOSTNAME)
-endif
-
-ifneq ($(SLAVE_HOSTNAMES), )
-M4FLAGS += -D DEF_SLAVE_HOSTNAMES=$(SLAVE_HOSTNAMES)
-endif
-
-ifneq ($(UG_HTTP_HOSTS), )
-M4FLAGS += -D DEF_UG_HTTP_HOSTS=$(UG_HTTP_HOSTS)
-endif
-
 ifneq ($(UG_HTTP_PORT), )
 M4FLAGS += -D DEF_UG_HTTP_PORT=$(UG_HTTP_PORT)
 endif
 
-export
-
-.PHONY: Dockerfile keys build clean
+.PHONY: Dockerfile build clean
 
 Dockerfile: Dockerfile.m4
 	m4 -I $(COMMON_CODE) $(M4FLAGS) $^ > $@
 
-config:
-	$(MAKE) -C hadoop_conf
-
-keys:
-	ssh-keygen -t rsa -P '' -f ./keys
-
-build: config keys Dockerfile
+build: Dockerfile
 	docker build --rm -t syndicate-gateways-hadoop .
 
 clean:
 	rm -f keys keys.pub
 	-docker rmi -f syndicate-gateways-hadoop
 	rm -f Dockerfile
-	$(MAKE) -C hadoop_conf clean

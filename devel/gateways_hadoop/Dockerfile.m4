@@ -20,12 +20,10 @@ include(`syndicate-hadoop.m4')
 USER syndicate
 WORKDIR $HOME
 
-RUN mkdir .ssh
-RUN chmod 700 .ssh
+ADD hadoop_conf $HOME/hadoop_conf
+ADD hadoop_conf $HOME/hadoop_conf
 
-ADD keys.pub $HOME/.ssh/
-RUN cat .ssh/keys.pub >> .ssh/authorized_keys
-RUN chmod 600 .ssh/authorized_keys
+ENV HADOOP_CONF_DIR $HOME/hadoop_conf
 
 ifdef(`DEF_GATEWAY_PORT',
 expose DEF_GATEWAY_PORT,
@@ -36,4 +34,3 @@ ifdef(`DEF_UG_HTTP_PORT',
 expose DEF_UG_HTTP_PORT,
 expose 8888
 )
-
