@@ -4,11 +4,9 @@
 RUN apt-get install -y libfuse-dev libattr1-dev
 
 USER syndicate
-WORKDIR $HOME
 
 RUN wget -O fskit.zip https://github.com/jcnelson/fskit/archive/master.zip
-RUN unzip fskit.zip
-RUN mv fskit-master fskit
+RUN unzip fskit.zip && mv fskit-master fskit
 WORKDIR "fskit"
 RUN make
 
@@ -27,8 +25,7 @@ WORKDIR $HOME
 
 ###### syndicate-core
 RUN wget -O syndicate-core.zip https://github.com/syndicate-storage/syndicate-core/archive/master.zip
-RUN unzip syndicate-core.zip
-RUN mv syndicate-core-master syndicate-core
+RUN unzip syndicate-core.zip && mv syndicate-core-master syndicate-core
 WORKDIR "syndicate-core"
 
 ifdef(`DEF_MS_APP_ADMIN_EMAIL',
