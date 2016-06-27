@@ -30,6 +30,5 @@ build: Dockerfile
 	docker build --rm -t syndicate-gateways-hadoop .
 
 clean:
-	rm -f keys keys.pub
 	-docker rmi -f syndicate-gateways-hadoop
 	rm -f Dockerfile
