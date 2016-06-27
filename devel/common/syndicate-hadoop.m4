@@ -33,5 +33,7 @@ RUN wget -O $HADOOP_HOME/lib/commons-collections4-4.0.jar http://central.maven.o
 RUN wget -O $HADOOP_HOME/lib/jersey-client-1.8.jar http://central.maven.org/maven2/com/sun/jersey/jersey-client/1.8/jersey-client-1.8.jar
 RUN wget -O $HADOOP_HOME/lib/jackson-jaxrs-1.5.2.jar http://central.maven.org/maven2/org/codehaus/jackson/jackson-jaxrs/1.5.2/jackson-jaxrs-1.5.2.jar
 RUN wget -O $HADOOP_HOME/lib/jackson-xc-1.5.2.jar http://central.maven.org/maven2/org/codehaus/jackson/jackson-xc/1.5.2/jackson-xc-1.5.2.jar
+RUN wget -O $HADOOP_HOME/lib/guava-11.0.2.jar http://central.maven.org/maven2/com/google/guava/guava/11.0.2/guava-11.0.2.jar
+
 
 USER root
