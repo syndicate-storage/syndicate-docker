@@ -32,7 +32,21 @@ RUN ldconfig
 USER syndicate
 WORKDIR $HOME
 
-###### syndicate-filesystem-ag-driver
+###### syndicate-rg
+RUN wget -O syndicate-rg.zip https://github.com/syndicate-storage/syndicate-rg/archive/master.zip
+RUN unzip syndicate-rg.zip && mv syndicate-rg-master syndicate-rg
+WORKDIR "syndicate-rg"
+
+RUN make
+
+USER root
+RUN make install
+RUN ldconfig
+
+USER syndicate
+WORKDIR $HOME
+
+###### syndicate-filesystem-driver
 RUN wget -O syndicate-fs-driver.zip https://github.com/syndicate-storage/syndicate-fs-driver/archive/master.zip
 RUN unzip syndicate-fs-driver.zip && mv syndicate-fs-driver-master syndicate-fs-driver
 WORKDIR "syndicate-fs-driver"

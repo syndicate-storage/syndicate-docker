@@ -11,7 +11,7 @@ include(`tools.m4')
 
 include(`syndicate-core.m4')
 
-include(`syndicate-ag.m4')
+include(`syndicate-ag-rg.m4')
 include(`syndicate-ug.m4')
 
 USER syndicate
