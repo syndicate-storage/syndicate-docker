@@ -1,33 +1,42 @@
-ADMIN_EMAIL ?= "iychoi@email.arizona.edu"
-HOST_NAME ?= "vm64-232.iplantcollaborative.org"
+MS_APP_ADMIN_EMAIL ?= "iychoi@email.arizona.edu"
+MS_HOST ?= "vm64-232.iplantcollaborative.org"
+MS_PORT ?= 8000
 GATEWAY_PORT ?= 31111
 UG_HTTP_PORT ?= 8888
 
-all: ms gateways gateways_nodejs gateways_hadoop
-.PHONY: all ms ms_clean gateways gateways_clean gateways_nodejs gateways_nodejs_clean gateways_hadoop gateways_hadoop_clean clean
+all: core ms gateways gateways_nodejs gateways_hadoop
 
-ms:
-	$(MAKE) -C ms build MS_APP_ADMIN_EMAIL=$(ADMIN_EMAIL) MS_HOST=$(HOST_NAME)
+.PHONY: all core core_clean ms ms_clean gateways gateways_clean gateways_nodejs gateways_nodejs_clean gateways_hadoop gateways_hadoop_clean clean
+
+core:
+	$(MAKE) -C core build MS_APP_ADMIN_EMAIL=$(MS_APP_ADMIN_EMAIL) MS_HOST=$(MS_HOST)
+
+core_clean:
+	$(MAKE) -C core clean
+
+ms: core
+	$(MAKE) -C ms build MS_APP_ADMIN_EMAIL=$(MS_APP_ADMIN_EMAIL) MS_HOST=$(MS_HOST) MS_PORT=$(MS_PORT)
 
 ms_clean:
 	$(MAKE) -C ms clean
 
-gateways:
-	$(MAKE) -C gateways build MS_APP_ADMIN_EMAIL=$(ADMIN_EMAIL) MS_HOST=$(HOST_NAME) GATEWAY_PORT=$(GATEWAY_PORT)
+gateways: core
+	$(MAKE) -C gateways build MS_APP_ADMIN_EMAIL=$(MS_APP_ADMIN_EMAIL) MS_HOST=$(MS_HOST) GATEWAY_PORT=$(GATEWAY_PORT)
 
 gateways_clean:
 	$(MAKE) -C gateways clean
 
-gateways_nodejs:
-	$(MAKE) -C gateways_nodejs build MS_APP_ADMIN_EMAIL=$(ADMIN_EMAIL) MS_HOST=$(HOST_NAME) GATEWAY_PORT=$(GATEWAY_PORT) UG_HTTP_PORT=$(UG_HTTP_PORT)
+gateways_nodejs: gateways
+	$(MAKE) -C gateways_nodejs build MS_APP_ADMIN_EMAIL=$(MS_APP_ADMIN_EMAIL) MS_HOST=$(MS_HOST) GATEWAY_PORT=$(GATEWAY_PORT) UG_HTTP_PORT=$(UG_HTTP_PORT)
 
 gateways_nodejs_clean:
 	$(MAKE) -C gateways_nodejs clean
 
-gateways_hadoop:
-	$(MAKE) -C gateways_hadoop build MS_APP_ADMIN_EMAIL=$(ADMIN_EMAIL) MS_HOST=$(HOST_NAME) GATEWAY_PORT=$(GATEWAY_PORT) UG_HTTP_PORT=$(UG_HTTP_PORT) MASTER_HOSTNAME=localhost SLAVE_HOSTNAMES=localhost UG_HTTP_HOSTS=localhost
+gateways_hadoop: gateways_nodejs
+	$(MAKE) -C gateways_hadoop build MS_APP_ADMIN_EMAIL=$(MS_APP_ADMIN_EMAIL) MS_HOST=$(MS_HOST) GATEWAY_PORT=$(GATEWAY_PORT) UG_HTTP_PORT=$(UG_HTTP_PORT)
 
 gateways_hadoop_clean:
 	$(MAKE) -C gateways_hadoop clean
 
-clean: ms_clean gateways_clean gateways_nodejs_clean gateways_hadoop_clean
+clean: core_clean ms_clean gateways_clean gateways_nodejs_clean gateways_hadoop_clean
+

@@ -2,17 +2,11 @@
 #
 # VERSION	1.0
 
-FROM	ubuntu:14.04
+FROM	syndicate-gateways
 MAINTAINER	Illyoung Choi <iychoi@email.arizona.edu>
 
-include(`common_head.m4')
-
-include(`tools.m4')
-
-include(`syndicate-core.m4')
-
-include(`syndicate-ag-rg.m4')
-include(`syndicate-ug.m4')
+USER root
+WORKDIR $HOME
 
 include(`syndicate-node.m4')
 
