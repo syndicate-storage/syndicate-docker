@@ -17,15 +17,15 @@ RUN ldconfig
 ##############################################
 # syndicate
 ##############################################
-RUN apt-get install -y protobuf-compiler libprotobuf-dev libcurl4-gnutls-dev libmicrohttpd-dev libjson0-dev valgrind cython python-protobuf libssl-dev python-crypto python-requests
-RUN pip install grequests gevent greenlet
+RUN apt-get install -y protobuf-compiler libprotobuf-dev libcurl4-gnutls-dev libmicrohttpd-dev libjson0-dev valgrind cython python-protobuf libssl-dev python-crypto python-requests && \
+    pip install grequests gevent greenlet
 
 USER syndicate
 WORKDIR $HOME
 
 ###### syndicate-core
-RUN wget -O syndicate-core.zip https://github.com/syndicate-storage/syndicate-core/archive/master.zip
-RUN unzip syndicate-core.zip && mv syndicate-core-master syndicate-core
+RUN wget -O syndicate-core.zip https://github.com/syndicate-storage/syndicate-core/archive/master.zip && \
+    unzip syndicate-core.zip && mv syndicate-core-master syndicate-core
 WORKDIR "syndicate-core"
 
 ifdef(`DEF_MS_APP_ADMIN_EMAIL',
@@ -41,7 +41,6 @@ define(MS_MAKE_ARGS_HOST, `')
 RUN make MS_MAKE_ARGS_ADMIN_EMAIL MS_MAKE_ARGS_HOST
 
 USER root
-RUN make install
-RUN ldconfig
+RUN make install && ldconfig
 
 WORKDIR $HOME
