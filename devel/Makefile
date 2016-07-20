@@ -11,7 +11,7 @@ all: core ms gateways gateways_nodejs gateways_hadoop
 core:
 	$(MAKE) -C core build MS_APP_ADMIN_EMAIL=$(MS_APP_ADMIN_EMAIL) MS_HOST=$(MS_HOST)
 
-core_clean:
+core_clean: gateways_clean
 	$(MAKE) -C core clean
 
 ms: core
@@ -23,13 +23,13 @@ ms_clean:
 gateways: core
 	$(MAKE) -C gateways build MS_APP_ADMIN_EMAIL=$(MS_APP_ADMIN_EMAIL) MS_HOST=$(MS_HOST) GATEWAY_PORT=$(GATEWAY_PORT)
 
-gateways_clean:
+gateways_clean: gateways_nodejs_clean
 	$(MAKE) -C gateways clean
 
 gateways_nodejs: gateways
 	$(MAKE) -C gateways_nodejs build MS_APP_ADMIN_EMAIL=$(MS_APP_ADMIN_EMAIL) MS_HOST=$(MS_HOST) GATEWAY_PORT=$(GATEWAY_PORT) UG_HTTP_PORT=$(UG_HTTP_PORT)
 
-gateways_nodejs_clean:
+gateways_nodejs_clean: gateways_hadoop_clean
 	$(MAKE) -C gateways_nodejs clean
 
 gateways_hadoop: gateways_nodejs
