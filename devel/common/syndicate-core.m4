@@ -17,8 +17,16 @@ RUN ldconfig
 ##############################################
 # syndicate
 ##############################################
-RUN apt-get install -y protobuf-compiler libprotobuf-dev libcurl4-gnutls-dev libmicrohttpd-dev libjson0-dev valgrind cython python-protobuf libssl-dev python-crypto python-requests && \
+RUN apt-get install -y protobuf-compiler libprotobuf-dev libgnutls-dev libjson0-dev valgrind cython python-protobuf libssl-dev libgcrypt11-dev libcurl4-gnutls-dev python-crypto python-requests && \
     pip install grequests gevent greenlet
+
+###### libmicrohttpd (0.9.44)
+RUN wget https://butler.opencloud.cs.arizona.edu/stopgap/libmicrohttpd-dbg_0.9.44+dfsg-1ubuntu2_amd64.deb && \
+    wget https://butler.opencloud.cs.arizona.edu/stopgap/libmicrohttpd-dev_0.9.44+dfsg-1ubuntu2_amd64.deb && \
+    wget https://butler.opencloud.cs.arizona.edu/stopgap/libmicrohttpd10_0.9.44+dfsg-1ubuntu2_amd64.deb && \
+    dpkg -i libmicrohttpd-dbg_0.9.44+dfsg-1ubuntu2_amd64.deb libmicrohttpd-dev_0.9.44+dfsg-1ubuntu2_amd64.deb libmicrohttpd10_0.9.44+dfsg-1ubuntu2_amd64.deb && \
+    apt-get -f install && \
+    rm libmicrohttpd-dbg_0.9.44+dfsg-1ubuntu2_amd64.deb libmicrohttpd-dev_0.9.44+dfsg-1ubuntu2_amd64.deb libmicrohttpd10_0.9.44+dfsg-1ubuntu2_amd64.deb
 
 USER syndicate
 WORKDIR $HOME
