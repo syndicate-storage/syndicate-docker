@@ -14,6 +14,5 @@ A new docker image for Syndicate Gateway will have a name "syndicate-gateways-no
 
 You can run the image in interactive mode by following command.
 ```
-sudo docker run -t -i -p 31111:31111 8888:8888 syndicate-gateways-node
+sudo docker run -t -i -p 31111:31111 -p 8888:8888 --name ug-nodejs syndicate-gateways-node
 ```
-

@@ -14,10 +14,10 @@ A new docker image for Syndicate MS will have a name "syndicate-ms" by default. 
 
 You can run the image in interactive mode by following command.
 ```
-sudo docker run -t -i -p 8080:8080 -p 8000:8000 syndicate-ms
+sudo docker run -t -i -p 8080:8080 -p 8000:8000 --name ms syndicate-ms
 ```
 
 Also, you can open a terminal to the running image (container).
 ```
-sudo docker exec -i -t `container_id` bash
+sudo docker exec -i -t ms /bin/bash
 ```
