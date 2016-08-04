@@ -33,7 +33,7 @@ RUN cp $HOME/h-syndicate/dist/H-Syndicate.jar $HADOOP_HOME/lib && \
     wget -O $HADOOP_HOME/lib/jackson-jaxrs-1.5.2.jar http://central.maven.org/maven2/org/codehaus/jackson/jackson-jaxrs/1.5.2/jackson-jaxrs-1.5.2.jar && \
     wget -O $HADOOP_HOME/lib/jackson-xc-1.5.2.jar http://central.maven.org/maven2/org/codehaus/jackson/jackson-xc/1.5.2/jackson-xc-1.5.2.jar && \
     wget -O $HADOOP_HOME/lib/guava-11.0.2.jar http://central.maven.org/maven2/com/google/guava/guava/11.0.2/guava-11.0.2.jar && \
-    wget -O $HADOOP_HOME/lib/jersey-apache-client4-1.18.1.jar http://central.maven.org/maven2/com/sun/jersey/contribs/jersey-apache-client4/1.18.1/jersey-apache-client4-1.18.1.jar && \
+    wget -O $HADOOP_HOME/lib/jersey-apache-client4-1.8.jar http://central.maven.org/maven2/com/sun/jersey/contribs/jersey-apache-client4/1.8/jersey-apache-client4-1.8.jar && \
     wget -O $HADOOP_HOME/lib/httpclient-4.1.1.jar http://central.maven.org/maven2/org/apache/httpcomponents/httpclient/4.1.1/httpclient-4.1.1.jar && \
     wget -O $HADOOP_HOME/lib/httpcore-4.1.1.jar http://central.maven.org/maven2/org/apache/httpcomponents/httpcore/4.1.1/httpcore-4.1.1.jar
 
