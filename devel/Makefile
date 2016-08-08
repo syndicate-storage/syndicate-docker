@@ -4,9 +4,9 @@ MS_PORT ?= 8000
 GATEWAY_PORT ?= 31111
 UG_HTTP_PORT ?= 8888
 
-all: core ms gateways gateways_nodejs gateways_hadoop
+all: core ms gateways gateways_nodejs gateways_hadoop gateways_r
 
-.PHONY: all core core_clean ms ms_clean gateways gateways_clean gateways_nodejs gateways_nodejs_clean gateways_hadoop gateways_hadoop_clean clean
+.PHONY: all core core_clean ms ms_clean gateways gateways_clean gateways_nodejs gateways_nodejs_clean gateways_hadoop gateways_hadoop_clean gateways_r gateways_r_clean clean
 
 core:
 	$(MAKE) -C core build MS_APP_ADMIN_EMAIL=$(MS_APP_ADMIN_EMAIL) MS_HOST=$(MS_HOST)
@@ -38,5 +38,10 @@ gateways_hadoop: gateways_nodejs
 gateways_hadoop_clean:
 	$(MAKE) -C gateways_hadoop clean
 
-clean: core_clean ms_clean gateways_clean gateways_nodejs_clean gateways_hadoop_clean
+gateways_r: gateways
+	$(MAKE) -C gateways_r build MS_APP_ADMIN_EMAIL=$(MS_APP_ADMIN_EMAIL) MS_HOST=$(MS_HOST) GATEWAY_PORT=$(GATEWAY_PORT)
 
+gateways_r_clean:
+	$(MAKE) -C gateways_r clean
+
+clean: core_clean ms_clean gateways_clean gateways_nodejs_clean gateways_hadoop_clean gateways_r_clean
