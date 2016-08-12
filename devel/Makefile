@@ -1,6 +1,6 @@
 MS_APP_ADMIN_EMAIL ?= "iychoi@email.arizona.edu"
 MS_HOST ?= "vm64-232.iplantcollaborative.org"
-MS_PORT ?= 8000
+MS_PORT ?= 8080
 GATEWAY_PORT ?= 31111
 UG_HTTP_PORT ?= 8888
 
