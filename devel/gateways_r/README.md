@@ -14,5 +14,5 @@ A new docker image for Syndicate Gateway will have a name "syndicate-gateways-r"
 
 You can run the image in interactive mode by following command.
 ```
-docker run -t -i -p 31111:31111 --name ug-r syndicate-gateways-r
+docker run -t -i -p 31111:31111 --cap-add SYS_ADMIN --device /dev/fuse --privileged --name ug-r syndicate-gateways-r
 ```
