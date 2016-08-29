@@ -2,12 +2,12 @@
 # syndicate
 ##############################################
 RUN pip install pika pyinotify expiringdict
-#retrying timeout_decorator 
+#retrying timeout_decorator
 
 USER syndicate
 
 # install python-irodsclient from github
-RUN wget -O python-irodsclient.zip https://github.com/irods/python-irodsclient/archive/master.zip && \
+RUN wget -O python-irodsclient.zip https://github.com/iychoi/python-irodsclient/archive/master.zip && \
     unzip python-irodsclient.zip && mv python-irodsclient-master python-irodsclient
 WORKDIR "python-irodsclient"
 
@@ -52,4 +52,3 @@ USER root
 RUN python setup.py install
 
 WORKDIR $HOME
-
