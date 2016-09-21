@@ -7,7 +7,7 @@ RUN curl -sL https://deb.nodesource.com/setup_4.x | bash - && \
 USER syndicate
 
 ###### syndicate-node
-RUN npm install ffi ref ref-struct ref-array async express node-cache express-ipfilter range_check
+RUN npm install ffi ref ref-struct ref-union ref-array async express node-cache express-ipfilter range_check
 
 # syndicate-node
 RUN wget -O syndicate-node.zip https://github.com/syndicate-storage/syndicate-node/archive/master.zip && \
@@ -25,4 +25,3 @@ RUN wget -O syndicate-ug-http.zip https://github.com/syndicate-storage/syndicate
     unzip syndicate-ug-http.zip && mv syndicate-ug-http-master syndicate-ug-http
 
 USER root
-
