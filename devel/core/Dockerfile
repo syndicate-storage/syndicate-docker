@@ -1,10 +1,21 @@
+# Syndicate core
+#
+# VERSION	1.0
+
+FROM	syndicate-base
+MAINTAINER	Illyoung Choi <iychoi@email.arizona.edu>
+
+ARG admin=iychoi@email.arizona.edu
+ARG mshost=localhost
+
+USER root
+
 ##############################################
 # fskit
 ##############################################
 RUN apt-get install -y libfuse-dev libattr1-dev
 
-USER syndicate
-
+USER $USER
 RUN wget -O fskit.zip https://github.com/jcnelson/fskit/archive/master.zip
 RUN unzip fskit.zip && mv fskit-master fskit
 WORKDIR "fskit"
@@ -28,7 +39,7 @@ RUN wget https://butler.opencloud.cs.arizona.edu/stopgap/libmicrohttpd-dbg_0.9.4
     apt-get -f install && \
     rm libmicrohttpd-dbg_0.9.44+dfsg-1ubuntu2_amd64.deb libmicrohttpd-dev_0.9.44+dfsg-1ubuntu2_amd64.deb libmicrohttpd10_0.9.44+dfsg-1ubuntu2_amd64.deb
 
-USER syndicate
+USER $USER
 WORKDIR $HOME
 
 ###### syndicate-core
@@ -36,19 +47,10 @@ RUN wget -O syndicate-core.zip https://github.com/syndicate-storage/syndicate-co
     unzip syndicate-core.zip && mv syndicate-core-master syndicate-core
 WORKDIR "syndicate-core"
 
-ifdef(`DEF_MS_APP_ADMIN_EMAIL',
-define(MS_MAKE_ARGS_ADMIN_EMAIL, MS_APP_ADMIN_EMAIL=`DEF_MS_APP_ADMIN_EMAIL'),
-define(MS_MAKE_ARGS_ADMIN_EMAIL, `')
-)
-
-ifdef(`DEF_MS_HOST',
-define(MS_MAKE_ARGS_HOST, MS_APP_PUBLIC_HOST=`DEF_MS_HOST'),
-define(MS_MAKE_ARGS_HOST, `')
-)
-
-RUN make MS_MAKE_ARGS_ADMIN_EMAIL MS_MAKE_ARGS_HOST
+RUN make MS_APP_ADMIN_EMAIL=$admin MS_APP_PUBLIC_HOST=$mshost
 
 USER root
 RUN make install && ldconfig
 
+USER $USER
 WORKDIR $HOME

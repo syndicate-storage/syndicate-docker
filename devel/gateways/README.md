@@ -7,7 +7,7 @@ Make sure that you install docker and have access rights to run docker before ge
 
 Run `make` to start building a docker image.
 ```
-make build MS_APP_ADMIN_EMAIL=`email-address` MS_HOST=`ip_address` GATEWAY_PORT=`portnum`
+make
 ```
 
 A new docker image for Syndicate Gateway will have a name "syndicate-gateways" by default. The docker image created will have Syndicate installed and an user "syndicate".

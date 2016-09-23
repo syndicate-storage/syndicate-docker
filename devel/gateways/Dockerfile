@@ -1,10 +1,18 @@
+# Syndicate gateways
+#
+# VERSION	1.0
+
+FROM	syndicate-core
+MAINTAINER	Illyoung Choi <iychoi@email.arizona.edu>
+
+USER root
+
 ##############################################
-# syndicate
+# syndicate AG/RG
 ##############################################
 RUN pip install pika pyinotify expiringdict
-#retrying timeout_decorator
 
-USER syndicate
+USER $USER
 
 # install python-irodsclient from github
 RUN wget -O python-irodsclient.zip https://github.com/iychoi/python-irodsclient/archive/master.zip && \
@@ -14,7 +22,7 @@ WORKDIR "python-irodsclient"
 USER root
 RUN python setup.py install
 
-USER syndicate
+USER $USER
 WORKDIR $HOME
 
 ###### syndicate-ag
@@ -27,7 +35,7 @@ RUN make
 USER root
 RUN make install && ldconfig
 
-USER syndicate
+USER $USER
 WORKDIR $HOME
 
 ###### syndicate-rg
@@ -40,7 +48,7 @@ RUN make
 USER root
 RUN make install && ldconfig
 
-USER syndicate
+USER $USER
 WORKDIR $HOME
 
 ###### syndicate-filesystem-driver
@@ -51,4 +59,35 @@ WORKDIR "syndicate-fs-driver"
 USER root
 RUN python setup.py install
 
+WORKDIR $HOME
+
+##############################################
+# syndicate
+##############################################
+USER $USER
+
+###### syndicate-ug-tools
+RUN wget -O syndicate-ug-tools.zip https://github.com/syndicate-storage/syndicate-ug-tools/archive/master.zip && \
+    unzip syndicate-ug-tools.zip && mv syndicate-ug-tools-master syndicate-ug-tools
+WORKDIR "syndicate-ug-tools"
+
+RUN make
+
+USER root
+RUN make install && ldconfig
+
+USER $USER
+WORKDIR $HOME
+
+###### syndicatefs (FUSE)
+RUN wget -O syndicatefs.zip https://github.com/syndicate-storage/syndicatefs/archive/master.zip && \
+    unzip syndicatefs.zip && mv syndicatefs-master syndicatefs
+WORKDIR "syndicatefs"
+
+RUN make
+
+USER root
+RUN make install && ldconfig
+
+USER $USER
 WORKDIR $HOME

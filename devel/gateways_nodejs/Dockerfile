@@ -1,10 +1,19 @@
+# Syndicate gateways for node.js
+#
+# VERSION	1.0
+
+FROM	syndicate-gateways
+MAINTAINER	Illyoung Choi <iychoi@email.arizona.edu>
+
+USER root
+
 ##############################################
-# syndicate
+# syndicate node.js
 ##############################################
 RUN curl -sL https://deb.nodesource.com/setup_4.x | bash - && \
     apt-get install -y nodejs
 
-USER syndicate
+USER $USER
 
 ###### syndicate-node
 RUN npm install ffi ref ref-struct ref-union ref-array async express node-cache express-ipfilter range_check async-lock
@@ -23,5 +32,3 @@ RUN wget -O syndicate-node-ug-tools.zip https://github.com/syndicate-storage/syn
 # syndicate-ug-http
 RUN wget -O syndicate-ug-http.zip https://github.com/syndicate-storage/syndicate-ug-http/archive/master.zip && \
     unzip syndicate-ug-http.zip && mv syndicate-ug-http-master syndicate-ug-http
-
-USER root

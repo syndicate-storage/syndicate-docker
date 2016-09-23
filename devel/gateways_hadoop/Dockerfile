@@ -1,9 +1,18 @@
+# Syndicate gateways for Hadoop
+#
+# VERSION	1.0
+
+FROM	syndicate-gateways-node
+MAINTAINER	Illyoung Choi <iychoi@email.arizona.edu>
+
+USER root
+
 ##############################################
 # Hadoop
 ##############################################
 RUN apt-get install -y openjdk-7-jdk ant
 
-USER syndicate
+USER $USER
 
 ###### Hadoop
 RUN wget -O hadoop-0.20.2-cdh3u5.tar.gz http://archive.cloudera.com/cdh/3/hadoop-0.20.2-cdh3u5.tar.gz && \
@@ -37,6 +46,4 @@ RUN cp $HOME/h-syndicate/dist/H-Syndicate.jar $HADOOP_HOME/lib && \
     wget -O $HADOOP_HOME/lib/httpclient-4.1.1.jar http://central.maven.org/maven2/org/apache/httpcomponents/httpclient/4.1.1/httpclient-4.1.1.jar && \
     wget -O $HADOOP_HOME/lib/httpcore-4.1.1.jar http://central.maven.org/maven2/org/apache/httpcomponents/httpcore/4.1.1/httpcore-4.1.1.jar
 
-
-
-USER root
+ADD hadoop_conf $HOME/hadoop/conf

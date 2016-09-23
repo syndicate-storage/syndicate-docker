@@ -1,3 +1,12 @@
+# Syndicate gateways for R
+#
+# VERSION	1.0
+
+FROM	syndicate-gateways
+MAINTAINER	Illyoung Choi <iychoi@email.arizona.edu>
+
+USER root
+
 ##############################################
 # Setup R
 ##############################################
@@ -7,3 +16,10 @@ RUN sh -c 'echo "deb http://cran.rstudio.com/bin/linux/ubuntu trusty/" >> /etc/a
 
 RUN apt-get update && \
     apt-get install -y r-base
+
+USER $USER
+
+##############################################
+# Setup CRAN repository
+##############################################
+ADD Rprofile $HOME/.Rprofile
