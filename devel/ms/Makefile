@@ -1,4 +1,4 @@
-NAME = "syndicate-ms"
+NAME = "syndicate-ms-dev"
 MS_APP_ADMIN_EMAIL ?= "iychoi@email.arizona.edu"
 MS_HOST ?= "localhost"
 

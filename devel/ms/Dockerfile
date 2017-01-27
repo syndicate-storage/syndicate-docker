@@ -1,8 +1,8 @@
-# Syndicate ms
+# Syndicate ms dev
 #
 # VERSION	1.0
 
-FROM	syndicate-core
+FROM	syndicate-core-dev
 MAINTAINER	Illyoung Choi <iychoi@email.arizona.edu>
 
 ##############################################
@@ -11,8 +11,8 @@ MAINTAINER	Illyoung Choi <iychoi@email.arizona.edu>
 USER $USER
 WORKDIR $HOME
 
-RUN wget https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.33.zip
-RUN unzip google_appengine_1.9.33.zip
+RUN wget https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.40.zip
+RUN unzip google_appengine_1.9.40.zip
 
 # Google App Engine Admin
 expose 8000

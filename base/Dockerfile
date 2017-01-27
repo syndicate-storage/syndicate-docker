@@ -27,8 +27,8 @@ WORKDIR $HOME
 # Setup utility packages
 ##############################################
 RUN apt-get update && \
-    apt-get install -y wget curl unzip python-pip build-essential ssh tcpdump fuse && \
-    sudo usermod -aG fuse $USER
+    apt-get install -y wget curl unzip python-pip build-essential ssh fuse && \
+    usermod -aG fuse $USER
 
 USER $USER
 WORKDIR $HOME

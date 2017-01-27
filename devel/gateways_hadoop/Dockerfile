@@ -2,7 +2,7 @@
 #
 # VERSION	1.0
 
-FROM	syndicate-gateways-node
+FROM	syndicate-gateways-node-dev
 MAINTAINER	Illyoung Choi <iychoi@email.arizona.edu>
 
 USER root

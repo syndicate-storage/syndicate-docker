@@ -1,4 +1,4 @@
-# Syndicate core
+# Syndicate core dev
 #
 # VERSION	1.0
 
@@ -43,7 +43,7 @@ USER $USER
 WORKDIR $HOME
 
 ###### syndicate-core
-RUN wget -O syndicate-core.zip https://github.com/syndicate-storage/syndicate-core/archive/master.zip && \
+RUN wget -O syndicate-core.zip https://github.com/iychoi/syndicate-core/archive/master.zip && \
     unzip syndicate-core.zip && mv syndicate-core-master syndicate-core
 WORKDIR "syndicate-core"
 

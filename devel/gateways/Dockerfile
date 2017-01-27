@@ -1,8 +1,8 @@
-# Syndicate gateways
+# Syndicate gateways dev
 #
 # VERSION	1.0
 
-FROM	syndicate-core
+FROM	syndicate-core-dev
 MAINTAINER	Illyoung Choi <iychoi@email.arizona.edu>
 
 USER root
@@ -64,6 +64,8 @@ WORKDIR $HOME
 ##############################################
 # syndicate
 ##############################################
+RUN apt-get install -y python-libuser
+
 USER $USER
 
 ###### syndicate-ug-tools
@@ -80,7 +82,7 @@ USER $USER
 WORKDIR $HOME
 
 ###### syndicatefs (FUSE)
-RUN wget -O syndicatefs.zip https://github.com/syndicate-storage/syndicatefs/archive/master.zip && \
+RUN wget -O syndicatefs.zip https://github.com/iychoi/syndicatefs/archive/master.zip && \
     unzip syndicatefs.zip && mv syndicatefs-master syndicatefs
 WORKDIR "syndicatefs"
 

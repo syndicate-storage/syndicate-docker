@@ -1,4 +1,4 @@
-NAME = "syndicate-gateways"
+NAME = "syndicate-gateways-dev"
 
 .PHONY: all build clean
 

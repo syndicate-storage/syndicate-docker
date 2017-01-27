@@ -1,13 +1,13 @@
-NAME = "syndicate-gateways-r-dev"
+NAME = "syndicate-core"
 
 .PHONY: all build clean
 
 all: build
 
-gateways:
-	$(MAKE) -C ../gateways
+base:
+	$(MAKE) -C ../../base
 
-.built: gateways
+.built: base
 	docker build -t $(NAME) .
 	@docker inspect -f '{{.Id}}' $(NAME) > .built
 

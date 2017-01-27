@@ -10,14 +10,14 @@ Run `make` to start building a docker image.
 make
 ```
 
-A new docker image for Syndicate Gateway will have a name "syndicate-gateways-dev" by default. The docker image created will have Syndicate installed and an user "syndicate".
+A new docker image for Syndicate Gateway will have a name "syndicate-gateways" by default. The docker image created will have Syndicate installed and an user "syndicate".
 
 You can run the image in interactive mode by following command.
 ```
-docker run -t -i -p 31111:31111 --name ug syndicate-gateways-dev
+docker run -t -i -p 31111:31111 --name ug syndicate-gateways
 ```
 
 If you are going to use "syndicatefs" based on FUSE, you would need to give higher privilege when running docker container.
 ```
-docker run -t -i -p 31111:31111 --cap-add SYS_ADMIN --device /dev/fuse --privileged --name ug syndicate-gateways-dev
+docker run -t -i -p 31111:31111 --cap-add SYS_ADMIN --device /dev/fuse --privileged --name ug syndicate-gateways
 ```
