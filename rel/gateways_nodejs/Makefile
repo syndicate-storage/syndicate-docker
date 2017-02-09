@@ -1,18 +1,22 @@
 NAME = "syndicate-gateways-node"
+DOCKER_COMPOSE ?= docker-compose -f docker-compose.yml
 
-.PHONY: all build clean
+.PHONY: all build run clean
 
 all: build
 
 gateways:
 	$(MAKE) -C ../gateways
 
-.built: gateways
-	docker build -t $(NAME) .
-	@docker inspect -f '{{.Id}}' $(NAME) > .built
+build: gateways
+	@docker inspect -f '{{.Id}}' $(NAME) 2> /dev/null ; if [ $$? -ne 0 ] ; then docker build -t $(NAME) . ; fi
 
-build: .built
+run: build
+	-$(DOCKER_COMPOSE) run --service-ports syndicate-gateways-node-svc
 
+stop: 
+	-$(DOCKER_COMPOSE) stop
+	
 clean:
-	@$(RM) .built
-	-docker rmi -f $(NAME)
+	-$(DOCKER_COMPOSE) stop
+	@docker inspect -f '{{.Id}}' $(NAME) 2> /dev/null ; if [ $$? -eq 0 ] ; then docker rmi -f $(NAME) ; fi

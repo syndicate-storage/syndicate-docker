@@ -29,6 +29,3 @@
 
 # vim
 *.swp
-
-# Docker related temp files
-.built

@@ -9,12 +9,8 @@ all: build
 core:
 	$(MAKE) -C ../core MS_APP_ADMIN_EMAIL=$(MS_APP_ADMIN_EMAIL) MS_HOST=$(MS_HOST)
 
-.built: core
-	docker build -t $(NAME) .
-	@docker inspect -f '{{.Id}}' $(NAME) > .built
-
-build: .built
+build: core
+	@docker inspect -f '{{.Id}}' $(NAME) 2> /dev/null ; if [ $$? -ne 0 ] ; then docker build -t $(NAME) . ; fi
 
 clean:
-	@$(RM) .built
-	-docker rmi -f $(NAME)
+	@docker inspect -f '{{.Id}}' $(NAME) 2> /dev/null ; if [ $$? -eq 0 ] ; then docker rmi -f $(NAME) ; fi
