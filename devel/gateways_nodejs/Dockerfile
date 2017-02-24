@@ -16,8 +16,9 @@ RUN curl -sL https://deb.nodesource.com/setup_4.x | bash - && \
 USER $USER
 
 ###### syndicate-node
-RUN npm install ffi ref ref-struct ref-union ref-array async express node-cache express-ipfilter range_check async-lock \
-                multer node-uuid async-lock mkdirp minimist
+RUN npm install ffi ref ref-struct ref-union ref-array async \
+                express node-cache express-ipfilter range_check multer node-uuid \
+                async-lock mkdirp restler minimist async user-info
 
 # syndicate-node
 RUN wget -O syndicate-node.zip https://github.com/syndicate-storage/syndicate-node/archive/master.zip && \
