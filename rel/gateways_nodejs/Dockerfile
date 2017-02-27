@@ -20,7 +20,7 @@ RUN npm install -g syndicate-drive \
 USER $USER
 ###### syndicate-ug-http
 RUN npm install express node-cache express-ipfilter range_check multer node-uuid \
-                async-lock mkdirp restler minimist async user-info
+                async-lock mkdirp restler minimist async user-info crypto
 
 RUN wget -O syndicate-ug-http.zip https://github.com/syndicate-storage/syndicate-ug-http/archive/master.zip && \
     unzip syndicate-ug-http.zip && mv syndicate-ug-http-master syndicate-ug-http && \
