@@ -3,6 +3,8 @@ IMAGE_NAME = syndicate-docker-gateways
 NETWORK_NAME = syndicate-docker
 DOCKERFILE = ./Dockerfile
 
+CONTAINER_NAME ?= GW
+
 .PHONY: all clean build rebuild run
 
 all: run
@@ -21,4 +23,4 @@ build: base
 rebuild: clean build
 	
 run: build
-	@docker run --net $(NETWORK_NAME) -ti --cap-add SYS_ADMIN --device /dev/fuse --privileged $(IMAGE_NAME)
+	@docker run --net $(NETWORK_NAME) -ti --cap-add SYS_ADMIN --device /dev/fuse --privileged --name $(CONTAINER_NAME) $(IMAGE_NAME)

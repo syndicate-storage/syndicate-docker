@@ -2,6 +2,8 @@ BUILD_FLAG ?=
 IMAGE_NAME = syndicate-docker-gateways-dev
 DOCKERFILE = ./Dockerfile
 
+CONTAINER_NAME ?= GW
+
 .PHONY: all clean build rebuild run
 
 all: run
@@ -20,4 +22,4 @@ build: base
 rebuild: clean build
 	
 run: build
-	@docker run -ti --cap-add SYS_ADMIN --device /dev/fuse --privileged $(IMAGE_NAME)
+	@docker run -ti --cap-add SYS_ADMIN --device /dev/fuse --privileged --name $(CONTAINER_NAME) $(IMAGE_NAME)
