@@ -10,11 +10,11 @@ Run `make` to start building a docker image.
 sudo make MS_APP_ADMIN_EMAIL=`email-address` MS_HOST=`ip_address`
 ```
 
-A new docker image for Syndicate MS will have a name "syndicate-ms-dev" by default. The docker image created will have Syndicate installed and an user "syndicate".
+A new docker image for Syndicate MS will have a name `syndicate-docker-ms-dev` by default. The docker image created will have Syndicate installed and an user `syndicate`.
 
 You can run the image in interactive mode by following command.
 ```
-docker run -t -i -p 8080:8080 -p 8000:8000 --name ms syndicate-ms-dev
+docker run -t -i -p 8080:8080 -p 8000:8000 --name ms syndicate-docker-ms-dev
 ```
 
 Also, you can open a terminal to the running image (container).

@@ -1,8 +1,8 @@
-# Syndicate ms dev
+# syndicate-docker-ms-dev
 #
 # VERSION	1.0
 
-FROM	syndicate-core-dev
+FROM	syndicate-docker-base-dev
 MAINTAINER	Illyoung Choi <iychoi@email.arizona.edu>
 
 ##############################################
@@ -11,15 +11,16 @@ MAINTAINER	Illyoung Choi <iychoi@email.arizona.edu>
 USER $USER
 WORKDIR $HOME
 
-RUN wget https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.40.zip
-RUN unzip google_appengine_1.9.40.zip
+RUN wget https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.40.zip && \
+    unzip google_appengine_1.9.40.zip && \
+    rm google_appengine_1.9.40.zip
 
 # Google App Engine Admin
-expose 8000
+EXPOSE 8000
 
 ##############################################
 # Run Syndicate MS
 ##############################################
-RUN mkdir datastore
+RUN mkdir syndicate_ms_data
 
-CMD $HOME/google_appengine/dev_appserver.py --admin_host=0.0.0.0 --host=0.0.0.0 --storage_path=$HOME/datastore --skip_sdk_update_check=true $HOME/syndicate-core/build/out/ms
+CMD $HOME/google_appengine/dev_appserver.py --admin_host=0.0.0.0 --host=0.0.0.0 --storage_path=$HOME/syndicate_ms_data --skip_sdk_update_check=true $HOME/syndicate-core/build/out/ms
