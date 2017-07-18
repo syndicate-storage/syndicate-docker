@@ -1,4 +1,4 @@
-# Syndicate-base
+# syndicate-docker-base
 #
 # VERSION	1.0
 

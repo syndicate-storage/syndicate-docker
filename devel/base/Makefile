@@ -1,5 +1,5 @@
 BUILD_FLAG ?= 
-IMAGE_NAME = syndicate-docker-core-dev
+IMAGE_NAME = syndicate-docker-base-dev
 DOCKERFILE = ./Dockerfile
 
 MS_APP_ADMIN_EMAIL ?= "iychoi@email.arizona.edu"

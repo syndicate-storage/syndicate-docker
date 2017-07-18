@@ -1,27 +1,13 @@
-# Syndicate gateways dev
+# syndicate-docker-gateways-dev
 #
 # VERSION	1.0
 
-FROM	syndicate-core-dev
+FROM	syndicate-docker-base-dev
 MAINTAINER	Illyoung Choi <iychoi@email.arizona.edu>
 
-USER root
-
 ##############################################
-# syndicate AG/RG
+# syndicate AG/RG/UG
 ##############################################
-RUN pip install pika pyinotify expiringdict
-
-USER $USER
-
-# install python-irodsclient from github
-RUN wget -O python-irodsclient.zip https://github.com/iychoi/python-irodsclient/archive/master.zip && \
-    unzip python-irodsclient.zip && mv python-irodsclient-master python-irodsclient
-WORKDIR "python-irodsclient"
-
-USER root
-RUN python setup.py install
-
 USER $USER
 WORKDIR $HOME
 
@@ -51,23 +37,6 @@ RUN make install && ldconfig
 USER $USER
 WORKDIR $HOME
 
-###### syndicate-filesystem-driver
-RUN wget -O syndicate-fs-driver.zip https://github.com/syndicate-storage/syndicate-fs-driver/archive/master.zip && \
-    unzip syndicate-fs-driver.zip && mv syndicate-fs-driver-master syndicate-fs-driver
-WORKDIR "syndicate-fs-driver"
-
-USER root
-RUN python setup.py install
-
-WORKDIR $HOME
-
-##############################################
-# syndicate
-##############################################
-RUN apt-get install -y python-libuser
-
-USER $USER
-
 ###### syndicate-ug-tools
 RUN wget -O syndicate-ug-tools.zip https://github.com/syndicate-storage/syndicate-ug-tools/archive/master.zip && \
     unzip syndicate-ug-tools.zip && mv syndicate-ug-tools-master syndicate-ug-tools
@@ -82,7 +51,7 @@ USER $USER
 WORKDIR $HOME
 
 ###### syndicatefs (FUSE)
-RUN wget -O syndicatefs.zip https://github.com/iychoi/syndicatefs/archive/master.zip && \
+RUN wget -O syndicatefs.zip https://github.com/syndicate-storage/syndicatefs/archive/master.zip && \
     unzip syndicatefs.zip && mv syndicatefs-master syndicatefs
 WORKDIR "syndicatefs"
 
@@ -90,6 +59,30 @@ RUN make
 
 USER root
 RUN make install && ldconfig
+
+WORKDIR $HOME
+
+###### syndicate-fs-driver dependencies
+USER root
+RUN pip install pika pyinotify expiringdict boto3 ftputil
+
+USER $USER
+
+# install python-irodsclient from github
+RUN wget -O python-irodsclient.zip https://github.com/iychoi/python-irodsclient/archive/master.zip && \
+    unzip python-irodsclient.zip && mv python-irodsclient-master python-irodsclient
+WORKDIR "python-irodsclient"
+
+USER root
+RUN python setup.py install
+
+###### syndicate-filesystem-driver
+RUN wget -O syndicate-fs-driver.zip https://github.com/syndicate-storage/syndicate-fs-driver/archive/master.zip && \
+    unzip syndicate-fs-driver.zip && mv syndicate-fs-driver-master syndicate-fs-driver
+WORKDIR "syndicate-fs-driver"
+
+USER root
+RUN python setup.py install
 
 USER $USER
 WORKDIR $HOME
