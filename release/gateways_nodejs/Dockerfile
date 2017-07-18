@@ -1,29 +1,47 @@
-# Syndicate gateways for node.js
+# syndicate-docker-gateways-nodejs
 #
 # VERSION	1.0
 
-FROM	syndicate-gateways
+FROM	syndicate-docker-gateways
 MAINTAINER	Illyoung Choi <iychoi@email.arizona.edu>
 
 USER root
 
 ##############################################
+# useful tools
+##############################################
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+    apt-get install -y --allow-unauthenticated --no-install-recommends \
+    curl unzip wget build-essential && \
+    apt-get clean autoclean && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt /var/lib/cache /var/lib/log
+
+##############################################
 # syndicate node.js
 ##############################################
-RUN curl -sL https://deb.nodesource.com/setup_4.x | bash - && \
-    apt-get install -y nodejs
-
-###### syndicate-node
-RUN npm install -g syndicate-drive \
-                   syndicate-drive-ug-tools
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+    apt-get install -y --allow-unauthenticated --no-install-recommends \
+    nodejs && \
+    apt-get clean autoclean && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt /var/lib/cache /var/lib/log
 
 USER $USER
-###### syndicate-ug-http
-RUN npm install express node-cache express-ipfilter range_check multer node-uuid \
-                async-lock mkdirp restler minimist async user-info crypto
 
+###### syndicate-node
+RUN npm install syndicate-storage \
+                syndicate-storage-ug-tools
+
+###### syndicate-ug-http
 RUN wget -O syndicate-ug-http.zip https://github.com/syndicate-storage/syndicate-ug-http/archive/master.zip && \
     unzip syndicate-ug-http.zip && mv syndicate-ug-http-master syndicate-ug-http && \
     rm syndicate-ug-http.zip
 
-RUN npm link syndicate-drive
+WORKDIR $HOME/syndicate-ug-http/server
+RUN npm install .
+WORKDIR $HOME/syndicate-ug-http/cli
+RUN npm install .
+
+WORKDIR $HOME
