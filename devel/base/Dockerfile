@@ -67,7 +67,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     apt-get install -y --allow-unauthenticated --no-install-recommends \
     protobuf-compiler libprotobuf-dev libgnutls-dev libjson0-dev valgrind \
     cython python-protobuf libssl-dev libgcrypt11-dev libcurl4-gnutls-dev \
-    python-crypto python-requests && \
+    python-crypto python-requests python-dev && \
     apt-get clean autoclean && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt /var/lib/cache /var/lib/log && \
