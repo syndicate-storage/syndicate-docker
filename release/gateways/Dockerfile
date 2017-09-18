@@ -16,7 +16,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     syndicate-rg \
     syndicate-fs-driver \ 
     syndicate-ug-tools \
-    syndicatefs && \
+    syndicatefs \
+    syndicate-dataset-manager && \
     apt-get clean autoclean && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt /var/lib/cache /var/lib/log
