@@ -67,11 +67,11 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     apt-get install -y --allow-unauthenticated --no-install-recommends \
     protobuf-compiler libprotobuf-dev libgnutls-dev libjson0-dev valgrind \
     cython python-protobuf libssl-dev libgcrypt11-dev libcurl4-gnutls-dev \
-    python-crypto python-requests python-dev && \
+    libevent-dev python-crypto python-requests python-dev && \
     apt-get clean autoclean && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt /var/lib/cache /var/lib/log && \
-    pip install grequests gevent greenlet
+    pip install -v greenlet gevent==1.2.2 grequests
 
 ###### libmicrohttpd (0.9.44)
 RUN wget https://butler.opencloud.cs.arizona.edu/stopgap/libmicrohttpd-dbg_0.9.44+dfsg-1ubuntu2_amd64.deb && \
