@@ -76,13 +76,17 @@ WORKDIR "python-irodsclient"
 USER root
 RUN python setup.py install
 
+WORKDIR $HOME
+USER $USER
+
 ###### syndicate-filesystem-driver
 RUN wget -O syndicate-fs-driver.zip https://github.com/syndicate-storage/syndicate-fs-driver/archive/master.zip && \
     unzip syndicate-fs-driver.zip && mv syndicate-fs-driver-master syndicate-fs-driver
 WORKDIR "syndicate-fs-driver"
 
 USER root
-RUN python setup.py install
+# need to ignore warnings (setuptools is too old)
+RUN python -W ignore setup.py install
 
 USER $USER
 WORKDIR $HOME
